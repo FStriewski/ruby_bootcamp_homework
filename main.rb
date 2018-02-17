@@ -8,10 +8,13 @@ end
 json = read_contacts
 output_array = []
 
-puts json
-
 # Assignment 1: .map , name as key, phone as value
+#|contact| Hash.new{|hash, key| hash[contact[:name]] = contact[:value]}
 
-def array_transformer
-    #
-end
+#Hash.new{|hash,key| hash[i[:name]]="w"}
+    output_array = json.map {|i|
+      puts i[:name].to_sym
+      puts i[:phone]
+    }
+
+output_array
