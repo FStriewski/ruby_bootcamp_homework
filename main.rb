@@ -15,5 +15,5 @@ output_array = json.map {|i| Hash[i[:name], i[:phone]] }
 
 
 # Assignment 2.1: .select , subcollection with phone contain string +1
-output_array = json.select {|i| i[:phone]=~ /\A.#{1}/  }
+output_array = json.select {|i| i[:phone]=~ /\A\+#{1}/  }
 puts output_array
