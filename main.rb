@@ -8,13 +8,7 @@ end
 json = read_contacts
 output_array = []
 
-# Assignment 1: .map , name as key, phone as value
-#|contact| Hash.new{|hash, key| hash[contact[:name]] = contact[:value]}
-
-#Hash.new{|hash,key| hash[i[:name]]="w"}
-    output_array = json.map {|i|
-      puts i[:name].to_sym
-      puts i[:phone]
-    }
-
-output_array
+# Assignment 1: .map , new hash, name as key, phone as value
+output_array = json.map {|i| Hash[i[:name], i[:phone]] }
+puts output_array
+puts "Object type: #{output_array.class}"
