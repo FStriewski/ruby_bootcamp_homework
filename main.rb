@@ -6,38 +6,58 @@ def read_contacts
 end
 
 json = read_contacts
-output_array = []
-
-# Assignment 1: .map , new hash, name as key, phone as value
-output_array = json.map {|i| Hash[i[:name], i[:phone]] }
-#puts output_array
-#puts "Object type: #{output_array.class}"
 
 
-# Assignment 2.1: .select , subcollection with phone contain string +1
-output_array = json.select {|i| i[:phone]=~ /\A\+#{1}/  }
-#puts output_array
+# .map , new hash, name as key, phone as value
+def assignment_1 (json)
+  json.map {|i| Hash[i[:name], i[:phone]] }
+end
 
 
-# Assignment 2.2: .select , subcollection with email domain contain org
-output_array = json.select {|i| i[:email][-3..-1]=~ /#{"org"}/  }
-#puts output_array
+# .select, subcollection with phone containing string "+1"
+def assignment_2_1 (json)
+  json.select {|i| i[:phone]=~ /\A\+#{1}/  }
+end
 
 
-# Assignment 3.1: .reduce, subcollection with count on condition 2.1
- output_array = json.reduce(0) {|sum,i|
-   if i[:phone]=~ /\A\+#{1}/
-     sum +=1
-   end
-   sum
+# .select, subcollection with email domain containing "org"
+def assignment_2_2 (json)
+  json.select {|i| i[:email][-3..-1]=~ /#{"org"}/  }
+end
+
+
+# .reduce, subcollection with count on condition 2.1
+def assignment_3_1 (json)
+  json.reduce(0) {|sum,i|
+    if i[:phone]=~ /\A\+#{1}/
+      sum +=1
+    end
+    sum
+  }
+end
+
+
+# .reduce, subcollection with count on condition 2.1
+def assignment_3_2 (json)
+  output_array = json.reduce(0) {|sum,i|
+    if i[:email][-3..-1]=~ /#{"org"}/
+      sum +=1
+    end
+    sum
+  }
+end
+
+
+loop {
+  puts "\n>> Which assignment: 1, 2_1, 2_2, 3_1, 3_2 ? (End with 'q')"
+  puts
+
+  selection = gets.chomp
+
+  break if selection.downcase == "q"
+  puts assignment_1(json) if selection == "1"
+  puts assignment_2_1(json) if selection == "2_1"
+  puts assignment_2_2(json) if selection == "2_2"
+  puts assignment_3_1(json) if selection == "3_1"
+  puts assignment_3_2(json) if selection == "3_2"
 }
-
-# Assignment 3.2: .reduce, subcollection with count on condition 3.1
- output_array = json.reduce(0) {|sum,i|
-   if i[:email][-3..-1]=~ /#{"org"}/
-     sum +=1
-   end
-   sum
-}
-
-puts output_array
