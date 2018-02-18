@@ -27,8 +27,11 @@ output_array = json.select {|i| i[:email][-3..-1]=~ /#{"org"}/  }
 # Assignment 3.1: .reduce , subcollection with count on condition 2.1
 
  output_array = json.reduce(0) {|sum,i|
-
- sum}
+   if i[:phone]=~ /\A\+#{1}/
+     sum +=1
+   end
+   sum
+}
 
 
 puts output_array
