@@ -6,11 +6,6 @@ def read_contacts
 end
 
 json = read_contacts
-json <<   {
-    "name": "Malcom X",
-    "phone": "+1 310 155 8822",
-    "email": "z.org@theroost.ss"
-  }
 output_array = []
 
 # Assignment 1: .map , new hash, name as key, phone as value
@@ -26,4 +21,14 @@ output_array = json.select {|i| i[:phone]=~ /\A\+#{1}/  }
 
 # Assignment 2.2: .select , subcollection with email domain contain org
 output_array = json.select {|i| i[:email][-3..-1]=~ /#{"org"}/  }
+#puts output_array
+
+
+# Assignment 3.1: .reduce , subcollection with count on condition 2.1
+
+ output_array = json.reduce(0) {|sum,i|
+
+ sum}
+
+
 puts output_array
